@@ -1,4 +1,3 @@
-#include "isort.h"
 #include <stdio.h>
 
 #define LEN 50
@@ -53,5 +52,6 @@ int main()
             printf(",");
         }
     }
+    printf("\n");
     return 0;
 }

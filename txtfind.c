@@ -1,38 +1,31 @@
-#include "txtfind.h"
-#include <string.h>
 #include <stdio.h>
 
 #define LINE 256
 #define WORD 30
 
-char lines[LINE];
-char words[WORD];
-
 int getLine(char s[])
 {
    int count = 0;
-   int i=0;
-    while (s[i] != '\0' || count < LINE)
+   char c;
+    while (scanf("%c",&c)!='\n')
     {
-        lines[i] = s[i];
+        s[count] = c;
         count++;
-        i++;
     }
-    lines[i] = '\0';
+    s[count] = '\0';
     return count;
 }
 
 int getWord(char w[])
 {
     int count = 0;
-    int i=0;
-    while (w[i] != '\t' || w[i] != '\n' || w[i] != '\0' || count < WORD)
+    char c;
+    while (w[i] != '\t' || w[i] != '\n' || w[i] != ' ')
     {
-        words[i] = w[i];
-        count++;
-        i++;
+        w[count] = c;
+        count++;+
     }
-    words[i] = '\0';
+    w[count] = '\0';
     return count;
 }
 
@@ -105,54 +98,46 @@ int similar (char *s, char *t, int n)
 
 void print_lines(char * str)
 {
-    char temp [] = "";
+    char s[LINE] = "";
     while (!EOF)
     {
-        getLine(temp);
-        if(substring(lines, str) == 1)
+        getLine(s);
+        char *str1 = s;
+        if(substring(str1, str) == 1)
         {
-            printf("%s\n", lines);
+            printf("%s\n", s);
         }
     }
 }
 
 void print_similar_words(char * str)
 {
-    char temp [] = "";
+    char w[WORD] = "";
     while (!EOF)
     {
-        getWord(temp);
-        if(similar(words, str, 1) == 1)
+        getWord(w);
+        char *str1 = w;
+        if(similar(str1, str, 1) == 1)
         {
-            printf("%s\n", words);
+            printf("%s\n", w);
         }
     }
 }
 
 int main()
 {
-    char temp [] = "";
-    char search [WORD];
-    char op[1];
-    int count = 0;
-    int i=0;
-    count = getWord(temp);
-    while (i < count)
-    {
-        search[i] = words[i];
-    }
-    count = getWord(temp);
-    while (i < count)
-    {
-        op[i] = words[i];
-    }
-    if (strcmp(op,"a"))
+    char searchW [WORD];
+    char *search = searchW;
+    getWord(searchW);
+    char op[WORD];
+    getWord(op);
+    if (op[0] == 'a')
     {
        print_lines(search);
     }
-     else {
+    else
+    {
        print_similar_words(search);
     }
-    return 0;
 }
 

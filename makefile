@@ -6,10 +6,10 @@ O_TXT=txtfind.o
 all: isort txtfind
 
 isort: isort.c isort.h
-	$(CC) $(WALL) -c isort.c -o isort
+	$(CC) $(WALL) isort.c -o isort
 
 txtfind: txtfind.c txtfind.h
-	$(CC) $(WALL) -c txtfind.c -o txtfind
+	$(CC) $(WALL) txtfind.c -o txtfind
 
 .PHONY: clean all
 
