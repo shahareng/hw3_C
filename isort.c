@@ -1,4 +1,7 @@
 #include "isort.h"
+#include <stdio.h>
+
+#define LEN 50
 
 // question 1- shifted
 
@@ -11,23 +14,44 @@ void shift_element(int* arr, int i)
         *(arr+j+1) = temp;
         temp = temp2;
     }
-    *(arr+k) = temp;
+    *(arr+i) = temp;
 }
 
 // question 2- insertion sort
 void insertion_sort(int* arr , int len)
 {
-    int key =0;
+    int key=0;
     int j=0;
     for (int i=1; i<len; i++)
     {
         key = *(arr+i);
         j = i-1;
-        while (j>=0 && *(arr+j) > *(arr+j)>key)
+        while (j>=0 && (*(arr+j) > key))
         {
             *(arr+j+1) = *(arr+j);
             j=j-1;
         }
         *(arr+j+1) = key;
     }
+}
+
+int main()
+{
+    int arr[LEN];
+    for(int i=0; i<LEN; i++)
+    {
+        scanf("%d", arr+i);
+    }
+
+    insertion_sort(arr, LEN);
+
+    for(int i=0; i<LEN; i++)
+    {
+        printf("%d", *(arr+i));
+        if (i != LEN-1)
+        {
+            printf(",");
+        }
+    }
+    return 0;
 }
